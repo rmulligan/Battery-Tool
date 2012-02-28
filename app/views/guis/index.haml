@@ -1,0 +1,7 @@
+= form_tag(:controller => "guis", :action => "calculate", :method => "post", :class => "battery_calculate") do
+  = label("device","Select a Device")
+  .clear
+    = select( "device", "id", { "F1" => "1", "F2I" => "2"})
+  = label("battery","Select Battery")
+  .clear
+    = select( "device", "id", { "F1" => "1", "F2I" => "2"})

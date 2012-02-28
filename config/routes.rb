@@ -1,5 +1,6 @@
 BatteryCalc::Application.routes.draw do
   get "guis/index"
+  get "guis/calculate"
   root :to => 'guis#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
