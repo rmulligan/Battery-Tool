@@ -1,0 +1,14 @@
+!!!
+%html{html_attrs}
+  %head
+    = yield :head
+    =csrf_meta_tag
+    %meta{:'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8"}
+    %meta{:name => "lang", :content => "en"}
+    %title= title
+    =render :partial => "layouts/stylesheets"
+  %body
+    = render :partial => "layouts/header"
+    .container#container
+      = yield
+    = render :partial => "layouts/footer"
