@@ -42,4 +42,8 @@ class GuisController < ApplicationController
     }
   end
 
+  def tool_index
+    @title = "Tools Directory"
+  end
+
 end

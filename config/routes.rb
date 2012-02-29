@@ -2,8 +2,10 @@ BatteryCalc::Application.routes.draw do
   get "calculate/crunch"
 
   get "guis/index"
-  root :to => 'guis#index'
+  get "guis/tool_index"
+  root :to => 'guis#tool_index'
   match 'calculate/crunch' => 'calculate#crunch'
+  match 'battery_calc' => 'guis#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
