@@ -1,3 +1,66 @@
 // Place all the styles related to the guis controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.odd {
+     background-color:lightgrey;
+     padding:10px;
+}
+
+.even {
+      padding:10px;
+}
+
+#battery_form {
+
+              text-align:left;
+              border: 1px solid #000000;
+              -moz-box-shadow: 10px 10px 5px #888;
+              -webkit-box-shadow: 10px 10px 5px #888;
+              box-shadow: 10px 10px 5px #888;
+}
+
+#device_name {
+             width:100%;
+             font-size: 1.3em;
+}
+
+#motion_hour {
+             width:60px;
+             font-size: 1.3em;
+             margin-left:40px;
+}
+
+#motion_minute {
+             width:60px;
+             font-size: 1.3em;
+}
+
+#stationary_hour {
+             width:60px;
+             font-size: 1.3em;
+             margin-left:40px;
+}
+
+#stationary_minute {
+             width:60px;
+             font-size: 1.3em;
+}
+
+#tim_percent {
+             width: 100%;
+             font-size: 1.3em;
+}
+
+#battery_form label {
+              font-size:1.3em;
+}
+
+#submit {
+        width:100%;
+        font-size: 1.5em;
+}
+
+#submit:hover {
+              cursor:pointer;
+}
+

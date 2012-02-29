@@ -1,7 +1,26 @@
-= form_tag(:controller => "guis", :action => "calculate", :method => "post", :class => "battery_calculate") do
-  = label("device","Select a Device")
-  .clear
-    = select( "device", "id", { "F1" => "1", "F2I" => "2"})
-  = label("battery","Select Battery")
-  .clear
-    = select( "device", "id", { "F1" => "1", "F2I" => "2"})
+.container
+  #battery_form.span-6{:style => "float:left"}
+    = form_tag( { :controller => :calculate, :action => :crunch }, {:name => "bform",:id => "bform", :remote => true } ) do
+      .odd
+        = label("device","Select a Device")
+        = select( "device", "name", @devices,:prompt => "Select a Device")
+      .even
+        = label("motion","Motion Check-in Rate")
+        .clear
+        = select( "motion", "minute", @minutes, {:prompt => "MM"})
+        = select( "motion", "hour", @hours, {:prompt => "HH"})
+      .odd
+        = label("stationary","Stationary Check-in Rate")
+        .clear
+        = select( "stationary", "minute", @minutes, {:prompt => "MM"})
+        = select( "stationary", "hour", @hours, {:prompt => "HH"})
+      .even
+        = label("tim","Time in Motion")
+        = select( "tim", "percent", @percentage)
+      .odd
+        = label_tag(:hibernate, "Hibernation Enabled")
+        = check_box_tag(:hibernate,"",false,:class=>"submittable")
+      .even
+        = submit_tag("Calculate",{:id => "submit"})
+  #calculation_results.span_18.first{:style=>"float:right"}
+    = render "grid"

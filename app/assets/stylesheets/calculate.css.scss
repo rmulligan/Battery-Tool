@@ -1,0 +1,18 @@
+// Place all the styles related to the calculate controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#calculation_table {
+	border: 1px solid #000000;
+	font-weight:bold;
+        -moz-box-shadow: 10px 10px 5px #888;
+        -webkit-box-shadow: 10px 10px 5px #888;
+         box-shadow: 10px 10px 5px #888;
+}
+
+#calculation_table td {
+	border: 1px solid #000000;
+	padding:10px;
+	font-weight:bold;
+	font-size:1.3em;
+}

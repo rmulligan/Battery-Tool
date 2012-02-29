@@ -7,3 +7,54 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+
+$(document).ready(function() {
+    $("#device_name").change(function(){
+        if($("#device_name").val() == 1) {
+            $("#hibernate").show();
+            $("#motion_hour").hide();
+            $("#motion_minute").hide();
+        }
+
+        if($("#device_name").val() == 2) {
+            $("#hibernate").show();
+            $("#motion_hour").show();
+            $("#motion_minute").show();
+        }
+
+        if($("#device_name").val() == 3) {
+            $("#hibernate").show();
+            $("#motion_hour").show();
+            $("#motion_minute").show();
+        }
+
+        if($("#device_name").val() == 4) {
+            $("#hibernate").show();
+            $("#motion_hour").show();
+            $("#motion_minute").show();
+        }
+
+        if($("#device_name").val() == 5) {
+            $("#hibernate").hide();
+            $("#motion_hour").hide();
+            $("#motion_minute").hide();
+        }
+
+        if($("#device_name").val() == 6) {
+            $("#hibernate").hide();
+            $("#motion_hour").hide();
+            $("#motion_minute").hide();
+        }
+
+        if($("#device_name").val() == 7) {
+            $("#hibernate").hide();
+            $("#motion_hour").show();
+            $("#motion_minute").show();
+        }
+    }
+
+
+  );
+});
