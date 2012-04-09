@@ -10,7 +10,7 @@
         = select( "motion", "minute", @minutes, {:prompt => "MM"})
         = select( "motion", "hour", @hours, {:prompt => "HH"})
       .odd
-        = label("stationary","Stationary Check-in Rate")
+        = label("stationary","Stationary Check-in Rate",:id => "sci_label")
         .clear
         = select( "stationary", "minute", @minutes, {:prompt => "MM"})
         = select( "stationary", "hour", @hours, {:prompt => "HH"})

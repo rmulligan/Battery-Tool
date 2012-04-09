@@ -11,6 +11,10 @@
 
 
 $(document).ready(function() {
+    $("#hibernate").change(function(){
+        $("#hibernate").is(":checked") ? $("#sci_label").html("Hibernation check-in rate") : $("#sci_label").html("Stationary check-in rate");
+    });
+
     $("#device_name").change(function(){
         if($("#device_name").val() == 1) {
             $("#hibernate").show();
