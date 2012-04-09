@@ -18,7 +18,7 @@ class GuisController < ApplicationController
     ######################################################
     @devices = {}
     Device.all.each do |device|
-      @devices[device.name] = device.id
+      @devices[device.name] = device.name
     end
     #######################################################
     # Time intervals for Stationary/Motion Check-In Rates #

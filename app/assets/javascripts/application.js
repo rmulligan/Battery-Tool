@@ -16,48 +16,71 @@ $(document).ready(function() {
     });
 
     $("#device_name").change(function(){
-        if($("#device_name").val() == 1) {
+        if($("#device_name").val() == "F2i") {
             $("#hibernate").show();
-            $("#motion_hour").hide();
-            $("#motion_minute").hide();
-        }
-
-        if($("#device_name").val() == 2) {
-            $("#hibernate").show();
+            $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
             $("#motion_minute").show();
         }
 
-        if($("#device_name").val() == 3) {
+        if($("#device_name").val() == "F2x") {
             $("#hibernate").show();
+            $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
             $("#motion_minute").show();
         }
-
-        if($("#device_name").val() == 4) {
+        if($("#device_name").val() == "F3") {
             $("#hibernate").show();
+            $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
             $("#motion_minute").show();
         }
-
-        if($("#device_name").val() == 5) {
+        if($("#device_name").val() == "F5") {
+            $("#hibernate").show();
+            $("#sci_label").html("Stationary check-in rate");
+            $("#motion_hour").show();
+            $("#motion_minute").show();
+        }
+        if($("#device_name").val() == "PT200") {
             $("#hibernate").hide();
+            $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").hide();
             $("#motion_minute").hide();
         }
-
-        if($("#device_name").val() == 6) {
+        if($("#device_name").val() == "SLM") {
             $("#hibernate").hide();
+            $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").hide();
             $("#motion_minute").hide();
         }
-
-        if($("#device_name").val() == 7) {
+        if($("#device_name").val() == "Mini MT") {
             $("#hibernate").hide();
+            $("#sci_label").html("Stationary check-in rate");
+            $("#motion_hour").show();
+            $("#motion_minute").show();
+        }
+        if($("#device_name").val() == "Mini MT") {
+            $("#hibernate").hide();
+            $("#sci_label").html("Stationary check-in rate");
+            $("#motion_hour").show();
+            $("#motion_minute").show();
+        }
+        if($("#device_name").val() == "AT4000") {
+            $("#hibernate").hide();
+            $("#motion_hour").show();
+            $("#sci_label").html("Hibernation check-in rate");
+            $("#motion_minute").show();
+        }
+        if($("#device_name").val() == "ILC1500") {
+            $("#hibernate").show();
+            $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
             $("#motion_minute").show();
         }
     }
+
+
+
 
 
   );
