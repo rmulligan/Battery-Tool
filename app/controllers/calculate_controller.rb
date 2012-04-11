@@ -11,12 +11,12 @@ class CalculateController < ApplicationController
 
     motion_to_sec      = to_min(motion_hour,motion_minute) * 60
     stat_to_sec        = to_min(stationary_hour,stationary_minute) * 60
-    report_current     = get_current_draw("Report Current",device_name).to_f
-    report_time        = get_current_draw("Report Time", device_name).to_f
-    idle_current       = get_current_draw("Idle Current",device_name).to_f
-    hib_report_current = get_current_draw("Hib. Report Current",device_name).to_f
-    hib_report_time    = get_current_draw("Hib. Report Time",device_name).to_f
-    hib_idle_current   = get_current_draw("Hib. Idle Current",device_name).to_f
+    report_current     = get_current_draw("Report Current",device_name).to_f rescue 0
+    report_time        = get_current_draw("Report Time", device_name).to_f rescue 0
+    idle_current       = get_current_draw("Idle Current",device_name).to_f rescue 0
+    hib_report_current = get_current_draw("Hib. Report Current",device_name).to_f rescue 0
+    hib_report_time    = get_current_draw("Hib. Report Time",device_name).to_f rescue 0
+    hib_idle_current   = get_current_draw("Hib. Idle Current",device_name).to_f rescue 0
 
     internal_capacity   = Battery.find_by_name("#{device_name} Internal").capacity.to_f rescue nil
     four_ah_capacity    = Battery.find_by_name("#{device_name} 4Ah").capacity.to_f rescue nil
