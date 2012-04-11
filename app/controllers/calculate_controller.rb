@@ -9,6 +9,14 @@ class CalculateController < ApplicationController
     stationary_percent  = 1 - motion_percent
     hibernation_enabled = params["hibernate"].nil? ? false : true
 
+    if device_name == "PT200" || device_name == "SLM" || device_name == "Mini MT"
+      hibernation_enabled = false
+    end
+
+    if device_name == "AT4000"
+      hibernation_enabled = true
+    end
+
     motion_to_sec      = to_min(motion_hour,motion_minute) * 60
     stat_to_sec        = to_min(stationary_hour,stationary_minute) * 60
     report_current     = get_current_draw("Report Current",device_name).to_f rescue 0

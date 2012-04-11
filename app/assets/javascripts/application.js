@@ -59,12 +59,7 @@ $(document).ready(function() {
             $("#motion_hour").show();
             $("#motion_minute").show();
         }
-        if($("#device_name").val() == "Mini MT") {
-            $("#hibernate").hide();
-            $("#sci_label").html("Stationary check-in rate");
-            $("#motion_hour").show();
-            $("#motion_minute").show();
-        }
+
         if($("#device_name").val() == "AT4000") {
             $("#hibernate").hide();
             $("#motion_hour").show();
