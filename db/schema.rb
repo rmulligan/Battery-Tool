@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20120228000209) do
 
   create_table "batteries", :force => true do |t|
-    t.float    "capacity"
+    t.decimal  "capacity",   :precision => 10, :scale => 6
     t.string   "name"
     t.integer  "device_id"
     t.datetime "created_at"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20120228000209) do
   create_table "device_states", :force => true do |t|
     t.integer  "device_id"
     t.string   "state"
-    t.float    "current_draw"
+    t.decimal  "current_draw", :precision => 10, :scale => 6
     t.datetime "created_at"
     t.datetime "updated_at"
   end

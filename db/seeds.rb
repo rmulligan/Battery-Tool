@@ -22,7 +22,7 @@ batteries = Battery.create([{ name: 'F2i Internal',
                               device_id: Device.find_by_name('F2x').id,
                               capacity:  10
                             },
-                            { name: 'F2x 10Ah',
+                            { name: 'F2x 20Ah',
                               device_id: Device.find_by_name('F2x').id,
                               capacity:  20
                             },
@@ -113,12 +113,12 @@ device_states = DeviceState.create([
                                     {
                                       device_id: Device.find_by_name("F2i").id,
                                       state: "Idle Current",
-                                      current_draw: 3.6
+                                      current_draw: 0.0036
                                     },
                                     {
                                       device_id: Device.find_by_name("F2i").id,
                                       state: "Report Current",
-                                      current_draw: 116.78
+                                      current_draw: 0.11678
                                     },
                                     {
                                       device_id: Device.find_by_name("F2i").id,
@@ -128,12 +128,12 @@ device_states = DeviceState.create([
                                     {
                                       device_id: Device.find_by_name("F2i").id,
                                       state: "Hib. Idle Current",
-                                      current_draw: 0.048
+                                      current_draw: 0.000048
                                     },
                                     {
                                       device_id: Device.find_by_name("F2i").id,
                                       state: "Hib. Report Current",
-                                      current_draw: 79.97
+                                      current_draw: 0.07997
                                     },
                                     {
                                       device_id: Device.find_by_name("F2i").id,
@@ -143,12 +143,12 @@ device_states = DeviceState.create([
                                     {
                                       device_id: Device.find_by_name("F2x").id,
                                       state: "Idle Current",
-                                      current_draw: 3.6
+                                      current_draw: 0.0036
                                     },
                                     {
                                       device_id: Device.find_by_name("F2x").id,
                                       state: "Report Current",
-                                      current_draw: 116.78
+                                      current_draw: 0.11678
                                     },
                                     {
                                       device_id: Device.find_by_name("F2x").id,
@@ -158,12 +158,12 @@ device_states = DeviceState.create([
                                     {
                                       device_id: Device.find_by_name("F2x").id,
                                       state: "Hib. Idle Current",
-                                      current_draw: 0.048
+                                      current_draw: 0.000048
                                     },
                                     {
                                       device_id: Device.find_by_name("F2x").id,
                                       state: "Hib. Report Current",
-                                      current_draw: 79.97
+                                      current_draw: 0.07997
                                     },
                                     {
                                       device_id: Device.find_by_name("F2x").id,
@@ -173,12 +173,12 @@ device_states = DeviceState.create([
                                     {
                                       device_id: Device.find_by_name("F3").id,
                                       state: "Idle Current",
-                                      current_draw: 4.09
+                                      current_draw: 0.00409
                                     },
                                     {
                                       device_id: Device.find_by_name("F3").id,
                                       state: "Report Current",
-                                      current_draw: 183.56
+                                      current_draw: 0.18356
                                     },
                                     {
                                       device_id: Device.find_by_name("F3").id,
@@ -188,12 +188,12 @@ device_states = DeviceState.create([
                                     {
                                       device_id: Device.find_by_name("F3").id,
                                       state: "Hib. Idle Current",
-                                      current_draw: 0.332
+                                      current_draw: 0.000332
                                     },
                                     {
                                       device_id: Device.find_by_name("F3").id,
                                       state: "Hib. Report Current",
-                                      current_draw: 117.96
+                                      current_draw: 0.11796
                                     },
                                     {
                                       device_id: Device.find_by_name("F3").id,
@@ -203,12 +203,12 @@ device_states = DeviceState.create([
                                     {
                                       device_id: Device.find_by_name("PT200").id,
                                       state: "Idle Current",
-                                      current_draw: 5.74
+                                      current_draw: 0.00574
                                     },
                                     {
                                       device_id: Device.find_by_name("PT200").id,
                                       state: "Report Current",
-                                      current_draw: 100.86
+                                      current_draw: 0.10086
                                     },
                                     {
                                       device_id: Device.find_by_name("PT200").id,
@@ -218,12 +218,12 @@ device_states = DeviceState.create([
                                     {
                                       device_id: Device.find_by_name("SLM").id,
                                       state: "Idle Current",
-                                      current_draw: 17.46
+                                      current_draw: 0.01746
                                     },
                                     {
                                       device_id: Device.find_by_name("SLM").id,
                                       state: "Report Current",
-                                      current_draw: 52.48
+                                      current_draw: 0.05248
                                     },
                                     {
                                       device_id: Device.find_by_name("SLM").id,
@@ -233,12 +233,12 @@ device_states = DeviceState.create([
                                     {
                                       device_id: Device.find_by_name("Mini MT").id,
                                       state: "Idle Current",
-                                      current_draw: 101.52
+                                      current_draw: 0.10152
                                     },
                                     {
                                       device_id: Device.find_by_name("Mini MT").id,
                                       state: "Report Current",
-                                      current_draw: 157.33
+                                      current_draw: 0.15733
                                     },
                                     {
                                       device_id: Device.find_by_name("Mini MT").id,
@@ -248,12 +248,12 @@ device_states = DeviceState.create([
                                     {
                                       device_id: Device.find_by_name("AT4000").id,
                                       state: "Hib. Idle Current",
-                                      current_draw: 0.222
+                                      current_draw: 0.000222
                                     },
                                     {
                                       device_id: Device.find_by_name("AT4000").id,
                                       state: "Hib. Report Current",
-                                      current_draw: 64.65
+                                      current_draw: 0.06465
                                     },
                                     {
                                       device_id: Device.find_by_name("AT4000").id,
@@ -263,12 +263,12 @@ device_states = DeviceState.create([
                                     {
                                       device_id: Device.find_by_name("ILC1500").id,
                                       state: "Idle Current",
-                                      current_draw: 59.76
+                                      current_draw: 0.05976
                                     },
                                     {
                                       device_id: Device.find_by_name("ILC1500").id,
                                       state: "Report Current",
-                                      current_draw: 164.32
+                                      current_draw: 0.16432
                                     },
                                     {
                                       device_id: Device.find_by_name("ILC1500").id,
@@ -278,12 +278,12 @@ device_states = DeviceState.create([
                                     {
                                       device_id: Device.find_by_name("ILC1500").id,
                                       state: "Hib. Idle Current",
-                                      current_draw: 0.716
+                                      current_draw: 0.000716
                                     },
                                     {
                                       device_id: Device.find_by_name("ILC1500").id,
                                       state: "Hib. Report Current",
-                                      current_draw: 78.81
+                                      current_draw: 0.07881
                                     },
                                     {
                                       device_id: Device.find_by_name("ILC1500").id,

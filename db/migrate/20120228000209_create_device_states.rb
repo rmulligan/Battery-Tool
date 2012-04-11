@@ -3,7 +3,7 @@ class CreateDeviceStates < ActiveRecord::Migration
     create_table :device_states do |t|
       t.integer :device_id
       t.string :state
-      t.float :current_draw
+      t.decimal :current_draw, :precision => 10, :scale => 6
 
       t.timestamps
     end
