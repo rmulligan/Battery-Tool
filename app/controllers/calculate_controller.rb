@@ -24,7 +24,14 @@ class CalculateController < ApplicationController
       hibernation_enabled = true
     end
 
+    ################################################################
+    # Time in motion does not matter unless hibernation is enabled #
+    ################################################################
 
+    if !hibernation_enabled
+      motion_percent     = 1
+      stationary_percent = 0
+    end
 
 
     if device_name == "PT200" || device_name == "SLM" || device_name == "Mini MT"
