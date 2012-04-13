@@ -2,9 +2,13 @@ class CalculateController < ApplicationController
   def crunch
     device_name         = params["device"]["name"]
     motion_hour         = params["motion"]["hour"]
+    motion_hour         = 0 if motion_hour == "HH"
     motion_minute       = params["motion"]["minute"]
+    motion_minute       = 0 if motion_minute == "MM"
     stationary_hour     = params["stationary"]["hour"]
+    stationary_hour     = 0 if stationary_hour == "HH"
     stationary_minute   = params["stationary"]["minute"]
+    stationary_minute   = 0 if stationary_minute == "MM"
     motion_percent      = params["tim"]["percent"].to_f / 100
     stationary_percent  = 1 - motion_percent
     hibernation_enabled = params["hibernate"].nil? ? false : true
