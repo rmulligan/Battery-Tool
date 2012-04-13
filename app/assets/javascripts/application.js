@@ -69,30 +69,29 @@ $(document).ready(function() {
             $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
             $("#motion_minute").show();
+            $("#tim_percent").hide();
+
         }
 
         if($("#device_name").val() == "AT4000") {
             $("#hibernate").hide();
-            $("#motion_hour").show();
+            $("#motion_hour").hide();
             $("#sci_label").html("Hibernation check-in rate");
-            $("#motion_minute").show();
+            $("#motion_minute").hide();
             $("#stationary_hour").show();
             $("#stationary_minute").show();
+            $("#tim_percent").hide();
         }
         if($("#device_name").val() == "ILC1500") {
             $("#hibernate").show();
             $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
             $("#motion_minute").show();
-            $("#stationary_hour").hide();
-            $("#stationary_minute").hide();
-            $("#tim_percent").hide();
+            $("#stationary_hour").show();
+            $("#stationary_minute").show();
+            $("#tim_percent").show();
         }
     }
-
-
-
-
 
   );
 });

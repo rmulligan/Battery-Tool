@@ -39,7 +39,16 @@ class CalculateController < ApplicationController
       motion_percent     = 1
       stationary_percent = 0
     elsif device_name == "AT4000"
-
+      motion_to_sec      = 1
+      stat_to_sec        = to_min(stationary_hour,stationary_minute) * 60
+      hib_report_current = get_current_draw("Hib. Report Current",device_name).to_f rescue 0
+      hib_report_time    = get_current_draw("Hib. Report Time",device_name).to_f rescue 0
+      hib_idle_current   = get_current_draw("Hib. Idle Current",device_name).to_f rescue 0
+      report_current     = 0
+      report_time        = 1
+      idle_current       = 0
+      motion_percent     = 0
+      stationary_percent = 1
     else
       motion_to_sec      = to_min(motion_hour,motion_minute) * 60
       stat_to_sec        = to_min(stationary_hour,stationary_minute) * 60
@@ -58,8 +67,8 @@ class CalculateController < ApplicationController
     twenty_ah_capacity  = Battery.find_by_name("#{device_name} 20Ah").capacity.to_f rescue nil
 
     average_motion_current = average_mot_current(report_current,report_time,motion_to_sec,idle_current)
-    average_hibernation_current = average_hib_current(report_current,report_time,stat_to_sec,hib_idle_current)
-    average_stationary_current  = average_sta_current(report_current,report_time,stat_to_sec,idle_current)
+    average_hibernation_current = average_hib_current(hib_report_current,hib_report_time,stat_to_sec,hib_idle_current)
+    average_stationary_current  = average_sta_current(hib_report_current,hib_report_time,stat_to_sec,idle_current)
 
 
 
