@@ -42,44 +42,81 @@ class CalculateController < ApplicationController
     if hibernation_enabled
       unless internal_capacity.nil?
         @internal_life = sprintf("%.2f",battery_life_hib(internal_capacity,motion_percent,average_motion_current,stationary_percent,average_hibernation_current))
+        @min_internal_life = sprintf("%.2f",@internal_life.to_f - (@internal_life.to_f * 0.0125))
+        @max_internal_life = sprintf("%.2f",@internal_life.to_f + (@internal_life.to_f * 0.0125))
       else
-        @internal_life = "N/A"
+        @internal_life     = "N/A"
+        @min_internal_life = "N/A"
+        @max_internal_life = "N/A"
       end
       unless four_ah_capacity.nil?
         @four_ah_life = sprintf("%.2f",battery_life_hib(four_ah_capacity,motion_percent,average_motion_current,stationary_percent,average_hibernation_current))
+        @min_four_ah_life = sprintf("%.2f",@four_ah_life.to_f - (@four_ah_life.to_f * 0.0125))
+        @max_four_ah_life = sprintf("%.2f",@four_ah_life.to_f + (@four_ah_life.to_f * 0.0125))
+
       else
-        @four_ah_life = "N/A"
+        @four_ah_life     = "N/A"
+        @min_four_ah_life = "N/A"
+        @max_four_ah_life = "N/A"
       end
       unless ten_ah_capacity.nil?
         @ten_ah_life = sprintf("%.2f",battery_life_hib(ten_ah_capacity,motion_percent,average_motion_current,stationary_percent,average_hibernation_current))
+        @min_ten_ah_life = sprintf("%.2f",@ten_ah_life.to_f - (@ten_ah_life.to_f * 0.0125))
+        @max_ten_ah_life = sprintf("%.2f",@ten_ah_life.to_f + (@ten_ah_life.to_f * 0.0125))
       else
-        @ten_ah_life = "N/A"
+        @ten_ah_life     = "N/A"
+        @min_ten_ah_life = "N/A"
+        @max_ten_ah_life = "N/A"
       end
       unless twenty_ah_capacity.nil?
         @twenty_ah_life = sprintf("%.2f",battery_life_hib(twenty_ah_capacity,motion_percent,average_motion_current,stationary_percent,average_hibernation_current))
+        @min_twenty_ah_life = sprintf("%.2f",@twenty_ah_life.to_f - (@twenty_ah_life.to_f * 0.0125))
+        @max_twenty_ah_life = sprintf("%.2f",@twenty_ah_life.to_f + (@twenty_ah_life.to_f * 0.0125))
       else
         @twenty_ah_life = "N/A"
+        @min_twenty_ah_life = "N/A"
+        @max_twenty_ah_life = "N/A"
       end
     else
+      ########################
+      # Hibernation Disabled #
+      ########################
+
       unless internal_capacity.nil?
         @internal_life = sprintf("%.2f",battery_life(internal_capacity,motion_percent,average_motion_current,stationary_percent,average_stationary_current))
+        @min_internal_life = sprintf("%.2f",@internal_life.to_f - (@internal_life.to_f * 0.0125))
+        @max_internal_life = sprintf("%.2f",@internal_life.to_f + (@internal_life.to_f * 0.0125))
       else
         @internal_life = "N/A"
+        @min_internal_life = "N/A"
+        @max_internal_life = "N/A"
       end
       unless four_ah_capacity.nil?
         @four_ah_life = sprintf("%.2f",battery_life(four_ah_capacity,motion_percent,average_motion_current,stationary_percent,average_stationary_current))
+        @min_four_ah_life = sprintf("%.2f",@four_ah_life.to_f - (@four_ah_life.to_f * 0.0125))
+        @max_four_ah_life = sprintf("%.2f",@four_ah_life.to_f + (@four_ah_life.to_f * 0.0125))
       else
         @four_ah_life = "N/A"
+        @min_four_ah_life = "N/A"
+        @max_four_ah_life = "N/A"
       end
       unless ten_ah_capacity.nil?
         @ten_ah_life = sprintf("%.2f",battery_life(ten_ah_capacity,motion_percent,average_motion_current,stationary_percent,average_stationary_current))
+        @min_ten_ah_life = sprintf("%.2f",@ten_ah_life.to_f - (@ten_ah_life.to_f * 0.0125))
+        @max_ten_ah_life = sprintf("%.2f",@ten_ah_life.to_f + (@ten_ah_life.to_f * 0.0125))
       else
         @ten_ah_life = "N/A"
+        @min_ten_ah_life = "N/A"
+        @max_ten_ah_life = "N/A"
       end
       unless twenty_ah_capacity.nil?
         @twenty_ah_life = sprintf("%.2f",battery_life(twenty_ah_capacity,motion_percent,average_motion_current,stationary_percent,average_stationary_current))
+        @min_twenty_ah_life = sprintf("%.2f",@twenty_ah_life.to_f - (@twenty_ah_life.to_f * 0.0125))
+        @max_twenty_ah_life = sprintf("%.2f",@twenty_ah_life.to_f + (@twenty_ah_life.to_f * 0.0125))
       else
         @twenty_ah_life = "N/A"
+        @min_twenty_ah_life = "N/A"
+        @max_twenty_ah_life = "N/A"
       end
     end
     render :layout      => false
