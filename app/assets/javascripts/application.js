@@ -69,6 +69,8 @@ $(document).ready(function() {
             $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
             $("#motion_minute").show();
+            $("#stationary_hour").hide();
+            $("#stationary_minute").hide();
             $("#tim_percent").hide();
 
         }
