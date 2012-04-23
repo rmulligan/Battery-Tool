@@ -45,13 +45,13 @@ class CalculateController < ApplicationController
       hib_report_current = 0
       hib_report_time    = 1
       hib_idle_current   = 0
-      motion_to_sec      = to_min(motion_hour,motion_minute) * 60
+      motion_to_sec      = to_sec(motion_hour,motion_minute)
       stat_to_sec        = 1
       motion_percent     = 1
       stationary_percent = 0
     elsif device_name == "AT4000"
       motion_to_sec      = 1
-      stat_to_sec        = to_min(stationary_hour,stationary_minute) * 60
+      stat_to_sec        = to_sec(stationary_hour,stationary_minute)
       hib_report_current = get_current_draw("Hib. Report Current",device_name).to_f rescue 0
       hib_report_time    = get_current_draw("Hib. Report Time",device_name).to_f rescue 0
       hib_idle_current   = get_current_draw("Hib. Idle Current",device_name).to_f rescue 0
@@ -61,8 +61,8 @@ class CalculateController < ApplicationController
       motion_percent     = 0
       stationary_percent = 1
     else
-      motion_to_sec      = to_min(motion_hour,motion_minute) * 60
-      stat_to_sec        = to_min(stationary_hour,stationary_minute) * 60
+      motion_to_sec      = to_sec(motion_hour,motion_minute)
+      stat_to_sec        = to_sec(stationary_hour,stationary_minute)
       hib_report_current = get_current_draw("Hib. Report Current",device_name).to_f rescue 0
       hib_report_time    = get_current_draw("Hib. Report Time",device_name).to_f rescue 0
       hib_idle_current   = get_current_draw("Hib. Idle Current",device_name).to_f rescue 0
@@ -77,159 +77,89 @@ class CalculateController < ApplicationController
     ten_ah_capacity     = Battery.find_by_name("#{device_name} 10Ah").capacity.to_f rescue nil
     twenty_ah_capacity  = Battery.find_by_name("#{device_name} 20Ah").capacity.to_f rescue nil
 
-    average_motion_current = average_mot_current(report_current,report_time,motion_to_sec,idle_current)
+    average_motion_current      = average_mot_current(report_current,report_time,motion_to_sec,idle_current)
+    average_stationary_current  = average_sta_current(report_current,report_time,stat_to_sec,idle_current)
     average_hibernation_current = average_hib_current(hib_report_current,hib_report_time,stat_to_sec,hib_idle_current)
-    average_stationary_current  = average_sta_current(hib_report_current,hib_report_time,stat_to_sec,idle_current)
 
+    ###################################################################
+    # Set the variable average current depending on hibernation state #
+    ###################################################################
+    hibernation_enabled ? average_var_current = average_hibernation_current : average_var_current = average_stationary_current
 
+    # Calculate Total Average current using the output from above
+    total_average_current = total_avg_current(motion_percent,average_var_current,average_motion_current)
 
 
     ################################
     # SEND CALCULATIONS TO SCREEN  #
     ################################
-    if hibernation_enabled
+
+    # INTERNAL BATTERY
       unless internal_capacity.nil?
-        @internal_life = sprintf("%.2f",battery_life_hib(internal_capacity,
-                                                         motion_percent,
-                                                         average_motion_current,
-                                                         stationary_percent,
-                                                         average_hibernation_current))
-        @min_internal_life = sprintf("%.2f",@internal_life.to_f - (@internal_life.to_f * 0.0125))
-        @max_internal_life = sprintf("%.2f",@internal_life.to_f + (@internal_life.to_f * 0.0125))
+        @internal_life = sprintf("%.2f",hrs_of_use(internal_capacity,total_average_current))
+        @min_internal_life = sprintf("%.2f",@internal_life.to_f - (@internal_life.to_f * 0.125))
+        @max_internal_life = sprintf("%.2f",@internal_life.to_f + (@internal_life.to_f * 0.125))
       else
         @internal_life     = "N/A"
         @min_internal_life = "N/A"
         @max_internal_life = "N/A"
       end
-      unless four_ah_capacity.nil?
-        @four_ah_life = sprintf("%.2f",battery_life_hib(four_ah_capacity,
-                                                        motion_percent,
-                                                        average_motion_current,
-                                                        stationary_percent,
-                                                        average_hibernation_current))
-        @min_four_ah_life = sprintf("%.2f",@four_ah_life.to_f - (@four_ah_life.to_f * 0.0125))
-        @max_four_ah_life = sprintf("%.2f",@four_ah_life.to_f + (@four_ah_life.to_f * 0.0125))
 
+    # FOUR AMP HOUR BATTERY
+      unless four_ah_capacity.nil?
+        @four_ah_life = sprintf("%.2f",hrs_of_use(four_ah_capacity,total_average_current))
+        @min_four_ah_life = sprintf("%.2f",@four_ah_life.to_f - (@four_ah_life.to_f * 0.125))
+        @max_four_ah_life = sprintf("%.2f",@four_ah_life.to_f + (@four_ah_life.to_f * 0.125))
       else
         @four_ah_life     = "N/A"
         @min_four_ah_life = "N/A"
         @max_four_ah_life = "N/A"
       end
+
+    # TEN AMP HOUR BATTERY
       unless ten_ah_capacity.nil?
-        @ten_ah_life = sprintf("%.2f",battery_life_hib(ten_ah_capacity,
-                                                       motion_percent,
-                                                       average_motion_current,
-                                                       stationary_percent,
-                                                       average_hibernation_current))
-        @min_ten_ah_life = sprintf("%.2f",@ten_ah_life.to_f - (@ten_ah_life.to_f * 0.0125))
-        @max_ten_ah_life = sprintf("%.2f",@ten_ah_life.to_f + (@ten_ah_life.to_f * 0.0125))
+        @ten_ah_life = sprintf("%.2f",hrs_of_use(ten_ah_capacity,total_average_current))
+        @min_ten_ah_life = sprintf("%.2f",@ten_ah_life.to_f - (@ten_ah_life.to_f * 0.125))
+        @max_ten_ah_life = sprintf("%.2f",@ten_ah_life.to_f + (@ten_ah_life.to_f * 0.125))
       else
         @ten_ah_life     = "N/A"
         @min_ten_ah_life = "N/A"
         @max_ten_ah_life = "N/A"
       end
+
+    # TWENTY AMP HOUR BATTERY
       unless twenty_ah_capacity.nil?
-        @twenty_ah_life = sprintf("%.2f",battery_life_hib(twenty_ah_capacity,
-                                                          motion_percent,
-                                                          average_motion_current,
-                                                          stationary_percent,
-                                                          average_hibernation_current))
-        @min_twenty_ah_life = sprintf("%.2f",@twenty_ah_life.to_f - (@twenty_ah_life.to_f * 0.0125))
-        @max_twenty_ah_life = sprintf("%.2f",@twenty_ah_life.to_f + (@twenty_ah_life.to_f * 0.0125))
+        @twenty_ah_life = sprintf("%.2f",hrs_of_use(twenty_ah_capacity,total_average_current))
+        @min_twenty_ah_life = sprintf("%.2f",@twenty_ah_life.to_f - (@twenty_ah_life.to_f * 0.125))
+        @max_twenty_ah_life = sprintf("%.2f",@twenty_ah_life.to_f + (@twenty_ah_life.to_f * 0.125))
       else
         @twenty_ah_life     = "N/A"
         @min_twenty_ah_life = "N/A"
         @max_twenty_ah_life = "N/A"
       end
-    else
-      ########################
-      # Hibernation Disabled #
-      ########################
 
-      unless internal_capacity.nil?
-        @internal_life = sprintf("%.2f",battery_life(internal_capacity,
-                                                     motion_percent,
-                                                     average_motion_current,
-                                                     stationary_percent,
-                                                     average_stationary_current))
-        @min_internal_life = sprintf("%.2f",@internal_life.to_f - (@internal_life.to_f * 0.0125))
-        @max_internal_life = sprintf("%.2f",@internal_life.to_f + (@internal_life.to_f * 0.0125))
-      else
-        @internal_life     = "N/A"
-        @min_internal_life = "N/A"
-        @max_internal_life = "N/A"
-      end
-      unless four_ah_capacity.nil?
-        @four_ah_life = sprintf("%.2f",battery_life(four_ah_capacity,
-                                                    motion_percent,
-                                                    average_motion_current,
-                                                    stationary_percent,
-                                                    average_stationary_current))
-        @min_four_ah_life = sprintf("%.2f",@four_ah_life.to_f - (@four_ah_life.to_f * 0.0125))
-        @max_four_ah_life = sprintf("%.2f",@four_ah_life.to_f + (@four_ah_life.to_f * 0.0125))
-      else
-        @four_ah_life     = "N/A"
-        @min_four_ah_life = "N/A"
-        @max_four_ah_life = "N/A"
-      end
-      unless ten_ah_capacity.nil?
-        @ten_ah_life = sprintf("%.2f",battery_life(ten_ah_capacity,
-                                                   motion_percent,
-                                                   average_motion_current,
-                                                   stationary_percent,
-                                                   average_stationary_current))
-        @min_ten_ah_life = sprintf("%.2f",@ten_ah_life.to_f - (@ten_ah_life.to_f * 0.0125))
-        @max_ten_ah_life = sprintf("%.2f",@ten_ah_life.to_f + (@ten_ah_life.to_f * 0.0125))
-      else
-        @ten_ah_life     = "N/A"
-        @min_ten_ah_life = "N/A"
-        @max_ten_ah_life = "N/A"
-      end
-      unless twenty_ah_capacity.nil?
-        @twenty_ah_life = sprintf("%.2f",battery_life(twenty_ah_capacity,
-                                                      motion_percent,
-                                                      average_motion_current,
-                                                      stationary_percent,
-                                                      average_stationary_current))
-        @min_twenty_ah_life = sprintf("%.2f",@twenty_ah_life.to_f - (@twenty_ah_life.to_f * 0.0125))
-        @max_twenty_ah_life = sprintf("%.2f",@twenty_ah_life.to_f + (@twenty_ah_life.to_f * 0.0125))
-      else
-        @twenty_ah_life = "N/A"
-        @min_twenty_ah_life = "N/A"
-        @max_twenty_ah_life = "N/A"
-      end
-    end
     render :layout      => false
   end
 
-  def battery_life_hib(battery_capacity,
-                       percent_in_motion,
-                       average_motion_current,
-                       percent_stationary,
-                       average_hib_current)
-    battery_capacity / ((percent_in_motion * average_motion_current) + (percent_stationary * average_hib_current))
-  end
-
-  def battery_life(battery_capacity,
-                   percent_in_motion,
-                   average_motion_current,
-                   percent_stationary,
-                   average_stationary_current)
-    battery_capacity / ((percent_in_motion * average_motion_current) + (percent_stationary * average_stationary_current))
+  def hrs_of_use(capacity,total_average_current)
+    capacity.to_f / total_average_current.to_f
   end
 
   def average_mot_current(report_current,report_time,motion_to_sec,idle_current)
-    ((((report_time * 60) / motion_to_sec * report_current) + (idle_current * (3600 - ((60 * report_time) / motion_to_sec))))) / 3600
+    ((((3600 * report_time.to_f) / motion_to_sec) / 3600) * report_current) + (((3600 - ((3600 * report_time.to_f) / motion_to_sec)) / 3600) * idle_current)
   end
 
   def average_sta_current(report_current,report_time,stat_to_sec,idle_current)
-    ((((report_time * 60) / stat_to_sec) * report_current) + (idle_current * (3600 - ((60 * report_time) / stat_to_sec)))) / 3600
+    ((((3600 * report_time.to_f) / stat_to_sec) / 3600) * report_current) + (((3600 - ((3600 * report_time.to_f) / stat_to_sec)) / 3600) * idle_current)
   end
 
   def average_hib_current(hib_report_current,hib_report_time,stat_to_sec,hib_idle_current)
-    ((((hib_report_time * 60) / stat_to_sec) * hib_report_current) + (hib_idle_current * (3600 - ((60 * hib_report_time) / stat_to_sec)))) / 3600
+    ((((3600 * hib_report_time.to_f) / stat_to_sec) / 3600) * hib_report_current) + (((3600 - ((3600 * hib_report_time.to_f) / stat_to_sec)) / 3600) * hib_idle_current)
   end
 
+  def total_avg_current(motion_percent,average_var_current,average_motion_current)
+    ((1 - motion_percent.to_f) * (average_var_current.to_f)) + (motion_percent.to_f * average_motion_current.to_f)
+  end
 
   def hours_of_motion_per_day percent
     percent / 100 * 24
@@ -239,8 +169,7 @@ class CalculateController < ApplicationController
     DeviceState.find(:first,:conditions => ["state = ? AND device_id = ?",state,Device.find_by_name(device_name)]).current_draw
   end
 
-  def to_min hours,minutes
-    (hours.to_i * 60) + minutes.to_i
+  def to_sec hours,minutes
+    ((hours.to_i * 60) + minutes.to_i) * 60
   end
 end
-
