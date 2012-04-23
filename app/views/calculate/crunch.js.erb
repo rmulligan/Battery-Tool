@@ -1,18 +1,4 @@
 
-/////////////////////////////////////
-// Typical Hours With New Battery  //
-/////////////////////////////////////
-
-$('#thnb20').css("color","blue");
-$('#thnb20').html("4.5");
-$('#thnb10').css("color","blue");
-$('#thnb10').html("4.5");
-$('#thnb1_5').css("color","blue");
-$('#thnb1_5').html("4.5");
-$('#thnbint').css("color","blue");
-$('#thnbint').html("4.5");
-
-
 ////////////////////
 // Typical Hours  //
 ////////////////////
@@ -31,13 +17,13 @@ $('#thint').html("<%= @internal_life %>");
 ///////////////////
 
 $('#min20').css("color","blue");
-$('#min20').html("4.5");
+$('#min20').html("<%= @min_twenty_ah_life %>");
 $('#min10').css("color","blue");
-$('#min10').html("4.5");
+$('#min10').html("<%= @min_ten_ah_life %>");
 $('#min1_5').css("color","blue");
-$('#min1_5').html("4.5");
+$('#min1_5').html("<%= @min_four_ah_life %>");
 $('#minint').css("color","blue");
-$('#minint').html("4.5");
+$('#minint').html("<%= @min_internal_life %>");
 
 
 ///////////////////
@@ -45,13 +31,13 @@ $('#minint').html("4.5");
 ///////////////////
 
 $('#max20').css("color","blue");
-$('#max20').html("4.5");
+$('#max20').html("<%= @max_twenty_ah_life %>");
 $('#max10').css("color","blue");
-$('#max10').html("4.5");
+$('#max10').html("<%= @max_ten_ah_life %>");
 $('#max1_5').css("color","blue");
-$('#max1_5').html("4.5");
+$('#max1_5').html("<%= @max_four_ah_life %>");
 $('#maxint').css("color","blue");
-$('#maxint').html("4.5");
+$('#maxint').html("<%= @max_internal_life %>");
 
 
 

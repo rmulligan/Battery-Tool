@@ -2,7 +2,6 @@ devices = Device.create([
                          { name: 'F2i'},
                          { name: 'F2x'},
                          { name: 'F3'},
-                         { name: 'F5'},
                          { name: 'PT200'},
                          { name: 'SLM'},
                          { name: 'Mini MT'},
@@ -40,22 +39,6 @@ batteries = Battery.create([{ name: 'F2i Internal',
                             },
                             { name: 'F3 20Ah',
                               device_id: Device.find_by_name('F3').id,
-                              capacity:  21.43
-                            },
-                            { name: 'F5 Internal',
-                              device_id: Device.find_by_name('F5').id,
-                              capacity:  1.43
-                            },
-                            { name: 'F5 4Ah',
-                              device_id: Device.find_by_name('F5').id,
-                              capacity:  5.43
-                            },
-                            { name: 'F5 10Ah',
-                              device_id: Device.find_by_name('F5').id,
-                              capacity:  11.43
-                            },
-                            { name: 'F5 20Ah',
-                              device_id: Device.find_by_name('F5').id,
                               capacity:  21.43
                             },
                             { name: 'PT200 4Ah',
