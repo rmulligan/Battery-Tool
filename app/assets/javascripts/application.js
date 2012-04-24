@@ -24,6 +24,8 @@ $(document).ready(function() {
             $("#stationary_hour").show();
             $("#stationary_minute").show();
             $("#tim_percent").show();
+            $("#stationary2_hour").hide();
+            $("#stationary2_minute").hide();
         }
 
         if($("#device_name").val() == "F2x") {
@@ -34,6 +36,8 @@ $(document).ready(function() {
             $("#stationary_hour").show();
             $("#stationary_minute").show();
             $("#tim_percent").show();
+            $("#stationary2_hour").hide();
+            $("#stationary2_minute").hide();
         }
         if($("#device_name").val() == "F3") {
             $("#hibernate").show();
@@ -43,6 +47,8 @@ $(document).ready(function() {
             $("#stationary_hour").show();
             $("#stationary_minute").show();
             $("#tim_percent").show();
+            $("#stationary2_hour").hide();
+            $("#stationary2_minute").hide();
         }
 
         if($("#device_name").val() == "PT200") {
@@ -53,26 +59,31 @@ $(document).ready(function() {
             $("#tim_percent").hide();
             $("#stationary_hour").hide();
             $("#stationary_minute").hide();
+            $("#stationary2_hour").hide();
+            $("#stationary2_minute").hide();
 
         }
-        if($("#device_name").val() == "SLM") {
+        if($("#device_name").val() == "SLM(2)") {
             $("#hibernate").hide();
-            $("#sci_label").html("Stationary check-in rate");
-            $("#motion_hour").show();
-            $("#motion_minute").show();
-            $("#stationary_hour").hide();
-            $("#stationary_minute").hide();
-            $("#tim_percent").hide();
-        }
-        if($("#device_name").val() == "Mini MT") {
-            $("#hibernate").show();
             $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
             $("#motion_minute").show();
             $("#stationary_hour").show();
             $("#stationary_minute").show();
             $("#tim_percent").show();
-
+            $("#stationary2_hour").hide();
+            $("#stationary2_minute").hide();
+        }
+        if($("#device_name").val() == "Mini MT(new)") {
+            $("#hibernate").hide();
+            $("#sci_label").html("Stationary check-in rate");
+            $("#motion_hour").show();
+            $("#motion_minute").show();
+            $("#stationary_hour").hide();
+            $("#stationary_minute").hide();
+            $("#tim_percent").show();
+            $("#stationary2_hour").hide();
+            $("#stationary2_minute").hide();
         }
 
         if($("#device_name").val() == "AT4000") {
@@ -83,14 +94,18 @@ $(document).ready(function() {
             $("#stationary_hour").show();
             $("#stationary_minute").show();
             $("#tim_percent").hide();
+            $("#stationary2_hour").hide();
+            $("#stationary2_minute").hide();
         }
         if($("#device_name").val() == "ILC1500") {
-            $("#hibernate").show();
+            $("#hibernate").hide();
             $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
             $("#motion_minute").show();
-            $("#stationary_hour").show();
-            $("#stationary_minute").show();
+            $("#stationary_hour").hide();
+            $("#stationary_minute").hide();
+            $("#stationary2_hour").show();
+            $("#stationary2_minute").show();
             $("#tim_percent").show();
         }
     }

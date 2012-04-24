@@ -40,6 +40,24 @@ class GuisController < ApplicationController
                  "15" => "15",
                  "30" => "30"
     }
+
+
+    # Time Selector Used With ILC1500 Stationary Check-In Rate
+    @hours2 = { "00" => "00",
+                "01" => "01",
+                "02" => "02",
+                "04" => "04",
+                "06" => "06",
+                "08" => "08",
+                "12" => "12"
+    }
+
+    @minutes2 = { "05" => "05",
+                  "10" => "10",
+                  "15" => "15",
+                  "30" => "30"
+    }
+
   end
 
   def tool_index

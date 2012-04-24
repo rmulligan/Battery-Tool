@@ -7,13 +7,17 @@
       .even
         = label("motion","Motion Check-in Rate")
         .clear
-        = select( "motion", "hour", @hours, {:prompt => "HH"})
-        = select( "motion", "minute", @minutes, {:prompt => "MM"})
+          = select( "motion", "hour", @hours, {:prompt => "HH"})
+          = select( "motion", "minute", @minutes, {:prompt => "MM"})
       .odd
         = label("stationary","Stationary Check-in Rate",:id => "sci_label")
         .clear
-        = select( "stationary", "hour", @hours, {:prompt => "HH"})
-        = select( "stationary", "minute", @minutes, {:prompt => "MM"})
+        #stationary_selector_1
+          = select( "stationary", "hour", @hours, {:prompt => "HH"})
+          = select( "stationary", "minute", @minutes, {:prompt => "MM"})
+        #stationary_selector_2
+          = select( "stationary2", "hour", @hours2, {:prompt => "HH"})
+          = select( "stationary2", "minute", @minutes2, {:prompt => "MM"})
       .even
         = label("tim","Time in Motion")
         = select( "tim", "percent", @percentage)

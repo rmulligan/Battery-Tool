@@ -9,6 +9,10 @@ class CalculateController < ApplicationController
     stationary_hour     = 0 if stationary_hour == "HH"
     stationary_minute   = params["stationary"]["minute"]
     stationary_minute   = 0 if stationary_minute == "MM"
+    stationary2_hour    = params["stationary2"]["hour"]
+    stationary2_hour    = 0 if stationary2_hour == "HH"
+    stationary2_minute  = params["stationary2"]["minute"]
+    stationary2_minute  = 0 if stationary2_minute == "MM"
     motion_percent      = params["tim"]["percent"].to_f / 100
     stationary_percent  = 1 - motion_percent
     hibernation_enabled = params["hibernate"].nil? ? false : true
@@ -17,28 +21,22 @@ class CalculateController < ApplicationController
     # These devices do not hibernate #
     ##################################
 
-    if device_name == "PT200" || device_name == "SLM"
+    if device_name == "PT200" || device_name == "SLM(2)"
       hibernation_enabled = false
     end
 
-    ################
-    # ... these do #
-    ################
+    #######################
+    # ... these always do #
+    #######################
     if device_name == "AT4000"
       hibernation_enabled = true
     end
 
-    ################################################################
-    # Time in motion does not matter unless hibernation is enabled #
-    ################################################################
+    #######################
+    # Device Conditionals #
+    #######################
 
-    if !hibernation_enabled
-      motion_percent     = 1
-      stationary_percent = 0
-    end
-
-
-    if device_name == "PT200" || device_name == "SLM"
+    if device_name == "PT200"
       report_current     = get_current_draw("Report Current",device_name).to_f rescue 0
       report_time        = get_current_draw("Report Time", device_name).to_f   rescue 0
       idle_current       = get_current_draw("Idle Current",device_name).to_f   rescue 0
@@ -60,6 +58,27 @@ class CalculateController < ApplicationController
       idle_current       = 0
       motion_percent     = 0
       stationary_percent = 1
+    elsif device_name == "ILC1500"
+      ###################################################################
+      # Because ILC1500 has limitations on the check-in rates available #
+      ###################################################################
+      motion_to_sec      = to_sec(motion_hour,motion_minute)
+      stat_to_sec        = to_sec(stationary2_hour,stationary2_minute)
+      hib_report_current = get_current_draw("Hib. Report Current",device_name).to_f rescue 0
+      hib_report_time    = get_current_draw("Hib. Report Time",device_name).to_f rescue 0
+      hib_idle_current   = get_current_draw("Hib. Idle Current",device_name).to_f rescue 0
+      report_current     = get_current_draw("Report Current",device_name).to_f rescue 0
+      report_time        = get_current_draw("Report Time", device_name).to_f rescue 0
+      idle_current       = get_current_draw("Idle Current",device_name).to_f rescue 0
+
+      ###########################################################################################
+      # Replace Hibernation Figures with Normal ones if motion check-in is less than 5 minutes #
+      ###########################################################################################
+      if motion_to_sec.to_i > to_sec(0,5).to_i
+        report_time    = hib_report_time
+        report_current = hib_report_current
+        idle_current   = hib_idle_current
+      end
     else
       motion_to_sec      = to_sec(motion_hour,motion_minute)
       stat_to_sec        = to_sec(stationary_hour,stationary_minute)
@@ -80,7 +99,8 @@ class CalculateController < ApplicationController
     average_motion_current      = average_mot_current(report_current,report_time,motion_to_sec,idle_current)
     average_stationary_current  = average_sta_current(report_current,report_time,stat_to_sec,idle_current)
     average_hibernation_current = average_hib_current(hib_report_current,hib_report_time,stat_to_sec,hib_idle_current)
-
+    # Use the hibernation idle current for the average hibernation idle current for Mini MT(new)
+    average_hibernation_current = hib_idle_current if device_name == "Mini MT(new)"
     ###################################################################
     # Set the variable average current depending on hibernation state #
     ###################################################################
@@ -88,6 +108,7 @@ class CalculateController < ApplicationController
 
     # Calculate Total Average current using the output from above
     total_average_current = total_avg_current(motion_percent,average_var_current,average_motion_current)
+    total_average_current = ((motion_percent.to_f * average_motion_current) + (stationary_percent * average_hibernation_current)) if device_name == "Mini MT(new)"
 
 
     ################################
