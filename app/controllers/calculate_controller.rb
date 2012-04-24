@@ -17,7 +17,7 @@ class CalculateController < ApplicationController
     # These devices do not hibernate #
     ##################################
 
-    if device_name == "PT200" || device_name == "SLM" || device_name == "Mini MT"
+    if device_name == "PT200" || device_name == "SLM"
       hibernation_enabled = false
     end
 
@@ -38,7 +38,7 @@ class CalculateController < ApplicationController
     end
 
 
-    if device_name == "PT200" || device_name == "SLM" || device_name == "Mini MT"
+    if device_name == "PT200" || device_name == "SLM"
       report_current     = get_current_draw("Report Current",device_name).to_f rescue 0
       report_time        = get_current_draw("Report Time", device_name).to_f   rescue 0
       idle_current       = get_current_draw("Idle Current",device_name).to_f   rescue 0

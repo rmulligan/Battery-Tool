@@ -65,13 +65,13 @@ $(document).ready(function() {
             $("#tim_percent").hide();
         }
         if($("#device_name").val() == "Mini MT") {
-            $("#hibernate").hide();
+            $("#hibernate").show();
             $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
             $("#motion_minute").show();
-            $("#stationary_hour").hide();
-            $("#stationary_minute").hide();
-            $("#tim_percent").hide();
+            $("#stationary_hour").show();
+            $("#stationary_minute").show();
+            $("#tim_percent").show();
 
         }
 
