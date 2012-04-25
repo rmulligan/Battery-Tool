@@ -108,7 +108,7 @@ class CalculateController < ApplicationController
 
     # Calculate Total Average current using the output from above
     total_average_current = total_avg_current(motion_percent,average_var_current,average_motion_current)
-    total_average_current = ((motion_percent.to_f * average_motion_current) + (stationary_percent * average_hibernation_current)) if device_name == "Mini MT(new)"
+    total_average_current = ((motion_percent.to_f * average_motion_current) + (stationary_percent.to_f * average_hibernation_current)) if device_name == "Mini MT(new)"
 
 
     ################################
@@ -128,7 +128,7 @@ class CalculateController < ApplicationController
 
     # FOUR AMP HOUR BATTERY
       unless four_ah_capacity.nil?
-        @four_ah_life = sprintf("%.2f",hrs_of_use(four_ah_capacity,total_average_current))
+        @four_ah_life =  sprintf("%.2f",hrs_of_use(four_ah_capacity,total_average_current))
         @min_four_ah_life = sprintf("%.2f",@four_ah_life.to_f - (@four_ah_life.to_f * 0.125))
         @max_four_ah_life = sprintf("%.2f",@four_ah_life.to_f + (@four_ah_life.to_f * 0.125))
       else
