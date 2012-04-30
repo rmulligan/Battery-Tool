@@ -1,4 +1,5 @@
 class GuisController < ApplicationController
+  before_filter :authenticate
   def index
     @title = "Battery Life Calculator"
     #######################################################

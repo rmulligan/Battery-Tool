@@ -11,5 +11,8 @@
   %body
     = render :partial => "layouts/header"
     .container#container
+      - flash.each do |key, value|
+        .flash
+          = "#{key.capitalize} - #{value}"
       = yield
     = render :partial => "layouts/footer"

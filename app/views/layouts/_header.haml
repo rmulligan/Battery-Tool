@@ -3,6 +3,9 @@
     =logo
   #title_div
     =title
+    #sign-out{:style => "float:right;margin-right:50px;"}
+      - if signed_in?
+        = link_to "Sign out", signout_path
 
 
 
