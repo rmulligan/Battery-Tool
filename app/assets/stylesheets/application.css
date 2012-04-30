@@ -5,7 +5,16 @@
  *= require_self
  *= require_tree .
 */
+.flash {
+         color:red;
+         font-size: 1.4em;
+         padding-bottom:10px;
+ }
 
+#sign-out a{
+             color:red;
+             font-weight:bold;
+ }
 #header {
   background-color: #000000;
   padding-left:50px;
