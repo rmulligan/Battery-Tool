@@ -1,17 +1,17 @@
 development:
   adapter: mysql
-  database: battery-check
+  database: fsn-tools
   username: root
   password: matthews
 
 test:
   adapter: mysql
-  database: battery-check-test
+  database: fsn-tools-test
   username: root
   password: matthews
 
 production:
   adapter: mysql
-  database: battery-check
+  database: fsn-tools
   username: root
   password: matthews

@@ -1,4 +1,6 @@
 BatteryCalc::Application.routes.draw do
+  resources :users
+
   get "calculate/crunch"
 
   get "guis/index"

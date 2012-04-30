@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20120228000209) do
 
-  create_table "batteries", :force => true do |t|
+  create_table "bt_batteries", :force => true do |t|
     t.decimal  "capacity",   :precision => 10, :scale => 6
     t.string   "name"
     t.integer  "device_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20120228000209) do
     t.datetime "updated_at"
   end
 
-  create_table "device_states", :force => true do |t|
+  create_table "bt_device_states", :force => true do |t|
     t.integer  "device_id"
     t.string   "state"
     t.decimal  "current_draw", :precision => 10, :scale => 6
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20120228000209) do
     t.datetime "updated_at"
   end
 
-  create_table "devices", :force => true do |t|
+  create_table "bt_devices", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
