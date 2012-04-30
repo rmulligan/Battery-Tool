@@ -17,7 +17,7 @@ class GuisController < ApplicationController
     # Populate hash with device id and name for dropdown #
     ######################################################
     @devices = {}
-    Device.all.each do |device|
+    BtDevice.all.each do |device|
       @devices[device.name] = device.name
     end
     #######################################################

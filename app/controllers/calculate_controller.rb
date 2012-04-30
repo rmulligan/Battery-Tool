@@ -91,10 +91,10 @@ class CalculateController < ApplicationController
     end
 
 
-    internal_capacity   = Battery.find_by_name("#{device_name} Internal").capacity.to_f rescue nil
-    four_ah_capacity    = Battery.find_by_name("#{device_name} 4Ah").capacity.to_f rescue nil
-    ten_ah_capacity     = Battery.find_by_name("#{device_name} 10Ah").capacity.to_f rescue nil
-    twenty_ah_capacity  = Battery.find_by_name("#{device_name} 20Ah").capacity.to_f rescue nil
+    internal_capacity   = BtBattery.find_by_name("#{device_name} Internal").capacity.to_f rescue nil
+    four_ah_capacity    = BtBattery.find_by_name("#{device_name} 4Ah").capacity.to_f rescue nil
+    ten_ah_capacity     = BtBattery.find_by_name("#{device_name} 10Ah").capacity.to_f rescue nil
+    twenty_ah_capacity  = BtBattery.find_by_name("#{device_name} 20Ah").capacity.to_f rescue nil
 
     average_motion_current      = average_mot_current(report_current,report_time,motion_to_sec,idle_current)
     average_stationary_current  = average_sta_current(report_current,report_time,stat_to_sec,idle_current)
@@ -187,7 +187,7 @@ class CalculateController < ApplicationController
   end
 
   def get_current_draw (state,device_name)
-    DeviceState.find(:first,:conditions => ["state = ? AND device_id = ?",state,Device.find_by_name(device_name)]).current_draw
+    BtDeviceState.find(:first,:conditions => ["state = ? AND device_id = ?",state,BtDevice.find_by_name(device_name)]).current_draw
   end
 
   def to_sec hours,minutes

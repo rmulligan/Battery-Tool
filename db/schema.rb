@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228000209) do
+ActiveRecord::Schema.define(:version => 20120430173937) do
 
   create_table "bt_batteries", :force => true do |t|
     t.decimal  "capacity",   :precision => 10, :scale => 6
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(:version => 20120228000209) do
 
   create_table "bt_devices", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "encrypted_password"
+    t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
