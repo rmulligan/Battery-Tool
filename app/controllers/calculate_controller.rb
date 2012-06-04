@@ -13,6 +13,10 @@ class CalculateController < ApplicationController
     stationary2_hour    = 0 if stationary2_hour == "HH"
     stationary2_minute  = params["stationary2"]["minute"]
     stationary2_minute  = 0 if stationary2_minute == "MM"
+    stationary3_hour    = params["stationary3"]["hour"]
+    stationary3_hour    = 0 if stationary3_hour == "HH"
+    stationary3_minute  = params["stationary3"]["minute"]
+    stationary3_minute  = 0 if stationary3_minute == "MM"
     motion_percent      = params["tim"]["percent"].to_f / 100
     stationary_percent  = 1 - motion_percent
     hibernation_enabled = params["hibernate"].nil? ? false : true
@@ -58,6 +62,18 @@ class CalculateController < ApplicationController
       idle_current       = 0
       motion_percent     = 0
       stationary_percent = 1
+    elsif device_name == "F2i/p" || device_name == "F2x" || device_name == "F3"
+      #########################################
+      # Minimum 2 minute Stationary check-in  #
+      #########################################
+      motion_to_sec      = to_sec(motion_hour,motion_minute)
+      stat_to_sec        = to_sec(stationary3_hour,stationary3_minute)
+      hib_report_current = get_current_draw("Hib. Report Current",device_name).to_f rescue 0
+      hib_report_time    = get_current_draw("Hib. Report Time",device_name).to_f rescue 0
+      hib_idle_current   = get_current_draw("Hib. Idle Current",device_name).to_f rescue 0
+      report_current     = get_current_draw("Report Current",device_name).to_f rescue 0
+      report_time        = get_current_draw("Report Time",device_name).to_f rescue 0
+      idle_current       = get_current_draw("Idle Current",device_name).to_f rescue 0
     elsif device_name == "ILC1500"
       ###################################################################
       # Because ILC1500 has limitations on the check-in rates available #
@@ -101,6 +117,10 @@ class CalculateController < ApplicationController
     average_hibernation_current = average_hib_current(hib_report_current,hib_report_time,stat_to_sec,hib_idle_current)
     # Use the hibernation idle current for the average hibernation idle current for Mini MT(new)
     average_hibernation_current = hib_idle_current if device_name == "Mini MT(new)"
+    # Use Hi Rate Report  Current for average_motion_current on F Series if motion check in is less than 1 minute
+    if (device_name == "F2i/p" || device_name == "F2x" || device_name == "F3") && motion_to_sec.to_i == to_sec(0,1).to_i
+      average_motion_current      = get_current_draw("Hi Rate Report Current",device_name).to_f rescue 0
+    end
     ###################################################################
     # Set the variable average current depending on hibernation state #
     ###################################################################

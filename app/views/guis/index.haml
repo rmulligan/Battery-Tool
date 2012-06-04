@@ -18,6 +18,9 @@
         #stationary_selector_2
           = select( "stationary2", "hour", @hours2, {:prompt => "HH"})
           = select( "stationary2", "minute", @minutes2, {:prompt => "MM"})
+        #stationary_selector_3
+          = select( "stationary3", "hour", @hours3, {:prompt => "HH"})
+          = select( "stationary3", "minute", @minutes3, {:prompt => "MM"})
       .even
         = label("tim","Time in Motion")
         = select( "tim", "percent", @percentage)
