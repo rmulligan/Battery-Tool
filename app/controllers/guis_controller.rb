@@ -59,6 +59,23 @@ class GuisController < ApplicationController
                   "30" => "30"
     }
 
+    # Time Selector Used With F Series Stationary Check-In Rate
+    @hours3 = { "00" => "00",
+                "01" => "01",
+                "02" => "02",
+                "04" => "04",
+                "06" => "06",
+                "08" => "08",
+                "12" => "12"
+    }
+
+    @minutes3 = { "02" => "02",
+                  "05" => "05",
+                  "10" => "10",
+                  "15" => "15",
+                  "30" => "30"
+    }
+
   end
 
   def tool_index
