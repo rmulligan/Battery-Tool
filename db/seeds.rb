@@ -1,7 +1,7 @@
 devices = BtDevice.create([
-                         { name: 'F2i'},
-#                          { name: 'F2x'},
-#                          { name: 'F3'},
+                         { name: 'F2i/p'},
+                         { name: 'F2x'},
+                         { name: 'F3'},
                          { name: 'PT200'},
                          { name: 'SLM(2)'},
                          { name: 'Mini MT(new)'},
@@ -10,38 +10,38 @@ devices = BtDevice.create([
                         ])
 
 batteries = BtBattery.create([
-                            { name: 'F2i Internal',
-                              device_id: BtDevice.find_by_name('F2i').id,
+                            { name: 'F2i/p Internal',
+                              device_id: BtDevice.find_by_name('F2i/p').id,
                               capacity:  1.58
                             },
-#                             { name: 'F2x 4Ah',
-#                               device_id: Device.find_by_name('F2x').id,
-#                               capacity:  4
-#                             },
-#                             { name: 'F2x 10Ah',
-#                               device_id: Device.find_by_name('F2x').id,
-#                               capacity:  10
-#                             },
-#                             { name: 'F2x 20Ah',
-#                               device_id: Device.find_by_name('F2x').id,
-#                               capacity:  20
-#                             },
-#                             { name: 'F3 Internal',
-#                               device_id: Device.find_by_name('F3').id,
-#                               capacity:  1.43
-#                             },
-#                             { name: 'F3 4Ah',
-#                               device_id: Device.find_by_name('F3').id,
-#                               capacity:  5.43
-#                             },
-#                             { name: 'F3 10Ah',
-#                               device_id: Device.find_by_name('F3').id,
-#                               capacity:  11.43
-#                             },
-#                             { name: 'F3 20Ah',
-#                               device_id: Device.find_by_name('F3').id,
-#                               capacity:  21.43
-#                             },
+                            { name: 'F2x 4Ah',
+                              device_id: BtDevice.find_by_name('F2x').id,
+                              capacity:  4
+                            },
+                            { name: 'F2x 10Ah',
+                              device_id: BtDevice.find_by_name('F2x').id,
+                              capacity:  10
+                            },
+                            { name: 'F2x 20Ah',
+                              device_id: BtDevice.find_by_name('F2x').id,
+                              capacity:  20
+                            },
+                            { name: 'F3 Internal',
+                              device_id: BtDevice.find_by_name('F3').id,
+                              capacity:  1.43
+                            },
+                            { name: 'F3 4Ah',
+                              device_id: BtDevice.find_by_name('F3').id,
+                              capacity:  5.43
+                            },
+                            { name: 'F3 10Ah',
+                              device_id: BtDevice.find_by_name('F3').id,
+                              capacity:  11.43
+                            },
+                            { name: 'F3 20Ah',
+                              device_id: BtDevice.find_by_name('F3').id,
+                              capacity:  21.43
+                            },
                             { name: 'PT200 4Ah',
                               device_id: BtDevice.find_by_name('PT200').id,
                               capacity:  4
@@ -95,100 +95,110 @@ batteries = BtBattery.create([
 
 device_states = BtDeviceState.create([
                                     {
-                                      device_id: BtDevice.find_by_name("F2i").id,
+                                      device_id: BtDevice.find_by_name("F2i/p").id,
                                       state: "Idle Current",
                                       current_draw: 0.0036
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2i").id,
+                                      device_id: BtDevice.find_by_name("F2i/p").id,
                                       state: "Report Current",
                                       current_draw: 0.11678
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2i").id,
+                                      device_id: BtDevice.find_by_name("F2i/p").id,
                                       state: "Report Time",
                                       current_draw: 73
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2i").id,
+                                      device_id: BtDevice.find_by_name("F2i/p").id,
                                       state: "Hib. Idle Current",
                                       current_draw: 0.000048
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2i").id,
+                                      device_id: BtDevice.find_by_name("F2i/p").id,
                                       state: "Hib. Report Current",
                                       current_draw: 0.07997
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2i").id,
+                                      device_id: BtDevice.find_by_name("F2i/p").id,
                                       state: "Hib. Report Time",
                                       current_draw: 101
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2i").id,
+                                      device_id: BtDevice.find_by_name("F2i/p").id,
                                       state: "Hi Rate Report Current",
                                       current_draw: 0.143
                                     },
-#                                     {
-#                                       device_id: Device.find_by_name("F2x").id,
-#                                       state: "Idle Current",
-#                                       current_draw: 0.0036
-#                                     },
-#                                     {
-#                                       device_id: Device.find_by_name("F2x").id,
-#                                       state: "Report Current",
-#                                       current_draw: 0.11678
-#                                     },
-#                                     {
-#                                       device_id: Device.find_by_name("F2x").id,
-#                                       state: "Report Time",
-#                                       current_draw: 73
-#                                     },
-#                                     {
-#                                       device_id: Device.find_by_name("F2x").id,
-#                                       state: "Hib. Idle Current",
-#                                       current_draw: 0.000048
-#                                     },
-#                                     {
-#                                       device_id: Device.find_by_name("F2x").id,
-#                                       state: "Hib. Report Current",
-#                                       current_draw: 0.07997
-#                                     },
-#                                     {
-#                                       device_id: Device.find_by_name("F2x").id,
-#                                       state: "Hib. Report Time",
-#                                       current_draw: 101
-#                                     },
-#                                     {
-#                                       device_id: Device.find_by_name("F3").id,
-#                                       state: "Idle Current",
-#                                       current_draw: 0.00409
-#                                     },
-#                                     {
-#                                       device_id: Device.find_by_name("F3").id,
-#                                       state: "Report Current",
-#                                       current_draw: 0.18356
-#                                     },
-#                                     {
-#                                       device_id: Device.find_by_name("F3").id,
-#                                       state: "Report Time",
-#                                       current_draw: 78
-#                                     },
-#                                     {
-#                                       device_id: Device.find_by_name("F3").id,
-#                                       state: "Hib. Idle Current",
-#                                       current_draw: 0.000332
-#                                     },
-#                                     {
-#                                       device_id: Device.find_by_name("F3").id,
-#                                       state: "Hib. Report Current",
-#                                       current_draw: 0.11796
-#                                     },
-#                                     {
-#                                       device_id: Device.find_by_name("F3").id,
-#                                       state: "Hib. Report Time",
-#                                       current_draw: 110
-#                                     },
+                                    {
+                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      state: "Idle Current",
+                                      current_draw: 0.0036
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      state: "Report Current",
+                                      current_draw: 0.11678
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      state: "Report Time",
+                                      current_draw: 73
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      state: "Hib. Idle Current",
+                                      current_draw: 0.000048
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      state: "Hib. Report Current",
+                                      current_draw: 0.07997
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      state: "Hib. Report Time",
+                                      current_draw: 101
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      state: "Hi Rate Report Current",
+                                      current_draw: 0.143
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F3").id,
+                                      state: "Idle Current",
+                                      current_draw: 0.00409
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F3").id,
+                                      state: "Report Current",
+                                      current_draw: 0.18356
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F3").id,
+                                      state: "Report Time",
+                                      current_draw: 78
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F3").id,
+                                      state: "Hib. Idle Current",
+                                      current_draw: 0.000332
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F3").id,
+                                      state: "Hib. Report Current",
+                                      current_draw: 0.11796
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F3").id,
+                                      state: "Hib. Report Time",
+                                      current_draw: 110
+                                    },
+                                    {
+                                      device_id: BtDevice.find_by_name("F3").id,
+                                      state: "Hi Rate Report Current",
+                                      current_draw: 0.213
+                                    },
                                     {
                                       device_id: BtDevice.find_by_name("PT200").id,
                                       state: "Idle Current",

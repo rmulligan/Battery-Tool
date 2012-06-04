@@ -16,7 +16,7 @@ $(document).ready(function() {
     });
 
     $("#device_name").change(function(){
-        if($("#device_name").val() == "F2i") {
+        if($("#device_name").val() == "F2i/p") {
             $("#hibernate").show();
             $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
@@ -35,26 +35,27 @@ $(document).ready(function() {
             $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
             $("#motion_minute").show();
-            $("#stationary_hour").show();
-            $("#stationary_minute").show();
+            $("#stationary_hour").hide();
+            $("#stationary_minute").hide();
             $("#tim_percent").show();
             $("#stationary2_hour").hide();
             $("#stationary2_minute").hide();
-            $("#stationary3_hour").hide();
-            $("#stationary3_minute").hide();
+            $("#stationary3_hour").show();
+            $("#stationary3_minute").show();
         }
+
         if($("#device_name").val() == "F3") {
             $("#hibernate").show();
             $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
             $("#motion_minute").show();
-            $("#stationary_hour").show();
-            $("#stationary_minute").show();
+            $("#stationary_hour").hide();
+            $("#stationary_minute").hide();
             $("#tim_percent").show();
             $("#stationary2_hour").hide();
             $("#stationary2_minute").hide();
-            $("#stationary3_hour").hide();
-            $("#stationary3_minute").hide();
+            $("#stationary3_hour").show();
+            $("#stationary3_minute").show();
         }
 
         if($("#device_name").val() == "PT200") {
