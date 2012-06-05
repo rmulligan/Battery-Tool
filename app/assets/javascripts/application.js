@@ -16,7 +16,7 @@ $(document).ready(function() {
     });
 
     $("#device_name").change(function(){
-        if($("#device_name").val() == "F2i/p") {
+        if($("#device_name").val() == "F2i(Pill Bottle Cell)") {
             $("#hibernate").show();
             $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();
@@ -30,7 +30,7 @@ $(document).ready(function() {
             $("#stationary3_minute").show();
         }
 
-        if($("#device_name").val() == "F2x") {
+        if($("#device_name").val() == "F2") {
             $("#hibernate").show();
             $("#sci_label").html("Stationary check-in rate");
             $("#motion_hour").show();

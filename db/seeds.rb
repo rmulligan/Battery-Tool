@@ -1,6 +1,6 @@
 devices = BtDevice.create([
-                         { name: 'F2i/p'},
-                         { name: 'F2x'},
+                         { name: 'F2i(Pill Bottle Cell)'},
+                         { name: 'F2'},
                          { name: 'F3'},
                          { name: 'PT200'},
                          { name: 'SLM(2)'},
@@ -10,37 +10,37 @@ devices = BtDevice.create([
                         ])
 
 batteries = BtBattery.create([
-                            { name: 'F2i/p Internal',
-                              device_id: BtDevice.find_by_name('F2i/p').id,
-                              capacity:  1.58
+                            { name: 'F2i(Pill Bottle Cell) Internal',
+                              device_id: BtDevice.find_by_name('F2i(Pill Bottle Cell)').id,
+                              capacity:  1.7
                             },
-                            { name: 'F2x 4Ah',
-                              device_id: BtDevice.find_by_name('F2x').id,
+                            { name: 'F2 4Ah',
+                              device_id: BtDevice.find_by_name('F2').id,
                               capacity:  4
                             },
-                            { name: 'F2x 10Ah',
-                              device_id: BtDevice.find_by_name('F2x').id,
+                            { name: 'F2 10Ah',
+                              device_id: BtDevice.find_by_name('F2').id,
                               capacity:  10
                             },
-                            { name: 'F2x 20Ah',
-                              device_id: BtDevice.find_by_name('F2x').id,
+                            { name: 'F2 20Ah',
+                              device_id: BtDevice.find_by_name('F2').id,
                               capacity:  20
                             },
                             { name: 'F3 Internal',
                               device_id: BtDevice.find_by_name('F3').id,
-                              capacity:  1.43
+                              capacity:  1.49
                             },
                             { name: 'F3 4Ah',
                               device_id: BtDevice.find_by_name('F3').id,
-                              capacity:  5.43
+                              capacity:  5.49
                             },
                             { name: 'F3 10Ah',
                               device_id: BtDevice.find_by_name('F3').id,
-                              capacity:  11.43
+                              capacity:  11.49
                             },
                             { name: 'F3 20Ah',
                               device_id: BtDevice.find_by_name('F3').id,
-                              capacity:  21.43
+                              capacity:  21.49
                             },
                             { name: 'PT200 4Ah',
                               device_id: BtDevice.find_by_name('PT200').id,
@@ -95,72 +95,72 @@ batteries = BtBattery.create([
 
 device_states = BtDeviceState.create([
                                     {
-                                      device_id: BtDevice.find_by_name("F2i/p").id,
+                                      device_id: BtDevice.find_by_name("F2i(Pill Bottle Cell)").id,
                                       state: "Idle Current",
                                       current_draw: 0.0036
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2i/p").id,
+                                      device_id: BtDevice.find_by_name("F2i(Pill Bottle Cell)").id,
                                       state: "Report Current",
                                       current_draw: 0.11678
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2i/p").id,
+                                      device_id: BtDevice.find_by_name("F2i(Pill Bottle Cell)").id,
                                       state: "Report Time",
                                       current_draw: 73
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2i/p").id,
+                                      device_id: BtDevice.find_by_name("F2i(Pill Bottle Cell)").id,
                                       state: "Hib. Idle Current",
                                       current_draw: 0.000048
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2i/p").id,
+                                      device_id: BtDevice.find_by_name("F2i(Pill Bottle Cell)").id,
                                       state: "Hib. Report Current",
                                       current_draw: 0.07997
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2i/p").id,
+                                      device_id: BtDevice.find_by_name("F2i(Pill Bottle Cell)").id,
                                       state: "Hib. Report Time",
                                       current_draw: 101
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2i/p").id,
+                                      device_id: BtDevice.find_by_name("F2i(Pill Bottle Cell)").id,
                                       state: "Hi Rate Report Current",
                                       current_draw: 0.143
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      device_id: BtDevice.find_by_name("F2").id,
                                       state: "Idle Current",
                                       current_draw: 0.0036
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      device_id: BtDevice.find_by_name("F2").id,
                                       state: "Report Current",
                                       current_draw: 0.11678
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      device_id: BtDevice.find_by_name("F2").id,
                                       state: "Report Time",
                                       current_draw: 73
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      device_id: BtDevice.find_by_name("F2").id,
                                       state: "Hib. Idle Current",
                                       current_draw: 0.000048
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      device_id: BtDevice.find_by_name("F2").id,
                                       state: "Hib. Report Current",
                                       current_draw: 0.07997
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      device_id: BtDevice.find_by_name("F2").id,
                                       state: "Hib. Report Time",
                                       current_draw: 101
                                     },
                                     {
-                                      device_id: BtDevice.find_by_name("F2x").id,
+                                      device_id: BtDevice.find_by_name("F2").id,
                                       state: "Hi Rate Report Current",
                                       current_draw: 0.143
                                     },

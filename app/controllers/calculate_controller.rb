@@ -62,7 +62,7 @@ class CalculateController < ApplicationController
       idle_current       = 0
       motion_percent     = 0
       stationary_percent = 1
-    elsif device_name == "F2i/p" || device_name == "F2x" || device_name == "F3"
+    elsif device_name == "F2i(Pill Bottle Cell)" || device_name == "F2" || device_name == "F3"
       #########################################
       # Minimum 2 minute Stationary check-in  #
       #########################################
@@ -118,7 +118,7 @@ class CalculateController < ApplicationController
     # Use the hibernation idle current for the average hibernation idle current for Mini MT(new)
     average_hibernation_current = hib_idle_current if device_name == "Mini MT(new)"
     # Use Hi Rate Report  Current for average_motion_current on F Series if motion check in is less than 1 minute
-    if (device_name == "F2i/p" || device_name == "F2x" || device_name == "F3") && motion_to_sec.to_i == to_sec(0,1).to_i
+    if (device_name == "F2i(Pill Bottle Cell)" || device_name == "F2" || device_name == "F3") && motion_to_sec.to_i == to_sec(0,1).to_i
       average_motion_current      = get_current_draw("Hi Rate Report Current",device_name).to_f rescue 0
     end
     ###################################################################
